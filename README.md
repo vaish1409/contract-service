@@ -24,6 +24,65 @@ mvn spring-boot:run # starts on http://localhost:8080
 
 Data is kept in `./data` (database) and `./uploads` (original files). Delete both folders to reset.
 
+## Demo screenshots
+
+The test suite passed with 13 tests, 0 failures, 0 errors, and 0 skipped. The startup and API walkthrough screenshots are included below in order.
+
+<details>
+<summary>Application started on port 8080</summary>
+<img src="screenshots/startup.png" alt="Spring Boot application started on port 8080" width="960">
+</details>
+
+<details>
+<summary>1. Upload PDF — HTTP 201, contract 1 in DRAFT</summary>
+<img src="screenshots/01-upload-pdf.png" alt="PDF contract upload succeeded with id 1 and DRAFT status" width="960">
+</details>
+
+<details>
+<summary>2. Upload DOCX — HTTP 201, contract 2 in DRAFT</summary>
+<img src="screenshots/02-upload-docx.png" alt="DOCX contract upload succeeded with id 2 and DRAFT status" width="960">
+</details>
+
+<details>
+<summary>3. Get contract 1 — metadata and initial history</summary>
+<img src="screenshots/03-get-contract-draft.png" alt="Contract 1 details, DRAFT status, next status, text preview, and history" width="960">
+</details>
+
+<details>
+<summary>4. Move contract 1 to REVIEW</summary>
+<img src="screenshots/04-status-review.png" alt="Contract 1 status updated to REVIEW" width="960">
+</details>
+
+<details>
+<summary>5. Move contract 1 to APPROVED</summary>
+<img src="screenshots/05-status-approved.png" alt="Contract 1 status updated to APPROVED" width="960">
+</details>
+
+<details>
+<summary>6. Verify full DRAFT → REVIEW → APPROVED history</summary>
+<img src="screenshots/06-status-history.png" alt="Contract 1 shows the complete status history" width="960">
+</details>
+
+<details>
+<summary>7. Ask about the termination notice period — answer found</summary>
+<img src="screenshots/07-ask-termination-notice.png" alt="Contract Q and A finds the 60-day termination notice clause" width="960">
+</details>
+
+<details>
+<summary>8. Ask about governing law in Mars — no answer found</summary>
+<img src="screenshots/08-ask-absent-law.png" alt="Contract Q and A returns found false for absent governing-law information" width="960">
+</details>
+
+<details>
+<summary>9. Reject an illegal DRAFT → APPROVED jump — HTTP 400</summary>
+<img src="screenshots/09-reject-illegal-status.png" alt="Illegal contract status transition returns a JSON HTTP 400 error" width="960">
+</details>
+
+<details>
+<summary>10. Reject a plain-text upload — HTTP 400</summary>
+<img src="screenshots/10-reject-text-file.png" alt="Unsupported text-file upload returns a JSON HTTP 400 error" width="960">
+</details>
+
 ## API
 
 | Method | Path | Purpose |
